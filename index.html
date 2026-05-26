@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL 语法练习台 Web 版</title>
+  <link rel="stylesheet" href="sql_practice.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Browser SQLite Lab</p>
+      <h1>SQL 语法练习台 Web 版</h1>
+    </div>
+    <div class="status" id="serverStatus">正在加载浏览器 SQLite...</div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="practice-panel" aria-label="SQL 练习案例">
+      <div class="panel-header">
+        <div>
+          <h2>练习案例</h2>
+          <p id="caseCount">0 个练习</p>
+        </div>
+        <button class="ghost-button" id="resetSql" type="button">重置 SQL</button>
+      </div>
+
+      <div class="filters" aria-label="练习筛选">
+        <label>
+          <span>难度</span>
+          <select id="difficultyFilter"></select>
+        </label>
+        <label>
+          <span>板块</span>
+          <select id="topicFilter"></select>
+        </label>
+      </div>
+
+      <div class="case-list" id="caseList"></div>
+    </aside>
+
+    <section class="workspace" aria-label="SQL 工作区">
+      <div class="lesson-card">
+        <div class="meta-row">
+          <p class="tag" id="lessonDifficulty">入门</p>
+          <p class="tag secondary" id="lessonTopic">SELECT 查询</p>
+        </div>
+        <h2 id="lessonTitle">查询整张学生表</h2>
+        <p id="lessonGoal"></p>
+        <ol id="lessonSteps"></ol>
+      </div>
+
+      <div class="schema-card">
+        <h2>内置练习库</h2>
+        <div class="schema-grid">
+          <code>students(id, name, age, city)</code>
+          <code>courses(id, title, teacher)</code>
+          <code>enrollments(student_id, course_id, score)</code>
+          <code>orders(id, customer, city, amount, status, order_date)</code>
+          <code>products(id, name, category, price, stock)</code>
+        </div>
+      </div>
+
+      <div class="editor-grid">
+        <section class="editor-panel" aria-label="SQL 编辑器">
+          <div class="tool-row">
+            <div>
+              <p class="label">query.sql</p>
+              <p class="hint">SQL 会在你的浏览器里运行，不会发送到服务器。</p>
+              <p class="hint" id="draftStatus">草稿会自动保存在当前浏览器</p>
+            </div>
+            <div class="tool-actions">
+              <button class="ghost-button answer-button" id="revealAnswer" type="button">显示答案</button>
+              <button class="run-button" id="runSql" type="button">运行</button>
+            </div>
+          </div>
+          <textarea id="sqlEditor" spellcheck="false" aria-label="SQL 代码" placeholder="在这里写你的 SQL..."></textarea>
+          <div class="answer-panel" id="answerPanel" hidden>
+            <div class="answer-header">
+              <p class="label">参考答案</p>
+            </div>
+            <pre id="answerOutput"></pre>
+          </div>
+        </section>
+
+        <section class="terminal-panel" aria-label="查询结果">
+          <div class="terminal-header">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>Browser SQLite Result</strong>
+          </div>
+          <pre id="terminalOutput">等待运行...</pre>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="vendor/sqljs/sql-wasm.js"></script>
+  <script src="sql_practice_web.js?v=20260526-web2"></script>
+</body>
+</html>
